@@ -5,23 +5,23 @@
 -- Enable powershell as your default shell
 vim.opt.shell = "pwsh.exe -NoLogo"
 vim.opt.shellcmdflag =
-"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
-vim.cmd [[
+	"-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.Encoding]::UTF8;"
+vim.cmd([[
 		let &shellredir = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		let &shellpipe = '2>&1 | Out-File -Encoding UTF8 %s; exit $LastExitCode'
 		set shellquote= shellxquote=
-  ]]
+  ]])
 
 -- Set a compatible clipboard manager
 vim.g.clipboard = {
-  copy = {
-    ["+"] = "win32yank.exe -i --crlf",
-    ["*"] = "win32yank.exe -i --crlf",
-  },
-  paste = {
-    ["+"] = "win32yank.exe -o --lf",
-    ["*"] = "win32yank.exe -o --lf",
-  },
+	copy = {
+		["+"] = "win32yank.exe -i --crlf",
+		["*"] = "win32yank.exe -i --crlf",
+	},
+	paste = {
+		["+"] = "win32yank.exe -o --lf",
+		["*"] = "win32yank.exe -o --lf",
+	},
 }
 
 -- vim options
@@ -36,9 +36,9 @@ vim.opt.colorcolumn = "80"
 -- general
 lvim.log.level = "info"
 lvim.format_on_save = {
-  enabled = true,
-  pattern = "*.lua",
-  timeout = 1000,
+	enabled = true,
+	pattern = "*.lua",
+	timeout = 1000,
 }
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -59,8 +59,8 @@ lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
 lvim.builtin.which_key.mappings["J"] = { "mzJ`z", "Delete endline Enter" }
 lvim.builtin.which_key.mappings["u"] = { "mxu`x", "Undo action" }
-lvim.builtin.which_key.mappings["<leader>rw"] = { [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-  "Replace current word" }
+lvim.builtin.which_key.mappings["<leader>rw"] =
+	{ [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace current word" }
 
 lvim.keys.normal_mode["<C-u>"] = { "<C-u>zz0", { silent = true } }
 lvim.keys.normal_mode["<C-d>"] = { "<C-d>zz0", { silent = true } }
@@ -69,55 +69,55 @@ lvim.keys.normal_mode["N"] = { "Nzzzv", { silent = true } }
 lvim.keys.normal_mode["<Esc>"] = { ":noh<CR>", { silent = true } }
 
 lvim.builtin.which_key.mappings["h"] = {
-  name = "Harpoon",
-  a = {
-    function()
-      require("harpoon.mark").add_file()
-    end,
-    "Add file to Harpoon",
-  },
-  t = {
-    function()
-      require("harpoon.ui").toggle_quick_menu()
-    end,
-    "Toggle quick menu",
-  },
-  f = {
-    function()
-      require("harpoon.ui").nav_file(1)
-    end,
-    "Go to file 1",
-  },
-  g = {
-    function()
-      require("harpoon.ui").nav_file(2)
-    end,
-    "Go to file 2",
-  },
-  h = {
-    function()
-      require("harpoon.ui").nav_file(3)
-    end,
-    "Go to file 3",
-  },
-  j = {
-    function()
-      require("harpoon.ui").nav_file(4)
-    end,
-    "Go to file 4",
-  },
-  n = {
-    function()
-      require("harpoon.ui").nav_next()
-    end,
-    "Go to next file",
-  },
-  p = {
-    function()
-      require("harpoon.ui").nav_prev()
-    end,
-    "Go to previous file",
-  },
+	name = "Harpoon",
+	a = {
+		function()
+			require("harpoon.mark").add_file()
+		end,
+		"Add file to Harpoon",
+	},
+	t = {
+		function()
+			require("harpoon.ui").toggle_quick_menu()
+		end,
+		"Toggle quick menu",
+	},
+	f = {
+		function()
+			require("harpoon.ui").nav_file(1)
+		end,
+		"Go to file 1",
+	},
+	g = {
+		function()
+			require("harpoon.ui").nav_file(2)
+		end,
+		"Go to file 2",
+	},
+	h = {
+		function()
+			require("harpoon.ui").nav_file(3)
+		end,
+		"Go to file 3",
+	},
+	j = {
+		function()
+			require("harpoon.ui").nav_file(4)
+		end,
+		"Go to file 4",
+	},
+	n = {
+		function()
+			require("harpoon.ui").nav_next()
+		end,
+		"Go to next file",
+	},
+	p = {
+		function()
+			require("harpoon.ui").nav_prev()
+		end,
+		"Go to previous file",
+	},
 }
 
 -- -- Change theme settings
@@ -165,14 +165,14 @@ lvim.builtin.treesitter.auto_install = true
 -- end
 
 -- -- linters and formatters <https://www.lunarvim.org/docs/languages#lintingformatting>
-local formatters = require "lvim.lsp.null-ls.formatters"
-formatters.setup {
-  { command = "stylua" },
-  {
-    command = "prettierd",
-    extra_args = { "--single-attribute-per-line", },
-  },
-}
+local formatters = require("lvim.lsp.null-ls.formatters")
+formatters.setup({
+	{ command = "stylua" },
+	{
+		command = "prettierd",
+		extra_args = { "--single-attribute-per-line" },
+	},
+})
 -- local linters = require "lvim.lsp.null-ls.linters"
 -- linters.setup {
 --   { command = "flake8", filetypes = { "python" } },
@@ -184,60 +184,76 @@ formatters.setup {
 
 -- -- Additional Plugins <https://www.lunarvim.org/docs/plugins#user-plugins>
 lvim.plugins = {
-  --     {
-  --       "folke/trouble.nvim",
-  --       cmd = "TroubleToggle",
-  --     },
-  { "catppuccin/nvim", name = "catppuccin" },
-  {
-    "echasnovski/mini.surround",
-    version = false,
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("mini.surround").setup()
-    end,
-  },
-  {
-    "ThePrimeagen/harpoon",
-    lazy = false,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-  },
-  {
-    "windwp/nvim-ts-autotag",
-    event = { "BufReadPost", "BufNewFile" },
-    config = function()
-      require("nvim-ts-autotag").setup()
-    end,
-  },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        -- defaults
-        "vim",
-        "lua",
+	--     {
+	--       "folke/trouble.nvim",
+	--       cmd = "TroubleToggle",
+	--     },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		no_italic = true,
+		integrations = {
+			-- sandwich = false,
+			-- noice = true,
+			-- mini = true,
+			-- leap = true,
+			-- markdown = true,
+			-- neotest = true,
+			-- cmp = true,
+			-- overseer = true,
+			-- lsp_trouble = true,
+			-- ts_rainbow2 = true,
+		},
+	},
+	{
+		"echasnovski/mini.surround",
+		version = false,
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("mini.surround").setup()
+		end,
+	},
+	{
+		"ThePrimeagen/harpoon",
+		lazy = false,
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		event = { "BufReadPost", "BufNewFile" },
+		config = function()
+			require("nvim-ts-autotag").setup()
+		end,
+	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				-- defaults
+				"vim",
+				"lua",
 
-        -- web dev
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "tsx",
-        "json",
-        "svelte",
-      },
-    },
-  },
-  {
-    "NvChad/nvim-colorizer.lua",
-    opts = {
-      user_default_options = {
-        tailwind = true,
-      },
-    },
-  },
+				-- web dev
+				"html",
+				"css",
+				"javascript",
+				"typescript",
+				"tsx",
+				"json",
+				"svelte",
+			},
+		},
+	},
+	{
+		"NvChad/nvim-colorizer.lua",
+		opts = {
+			user_default_options = {
+				tailwind = true,
+			},
+		},
+	},
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
