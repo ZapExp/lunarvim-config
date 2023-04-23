@@ -50,23 +50,32 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.visual_mode["J"] = ":m '>+1<CR>gv=gv"
 lvim.keys.visual_mode["K"] = ":m '<-2<CR>gv=gv"
 
--- lvim.keys.normal_mode["<S-l>"] = ":BufferLineCycleNext<CR>"
--- lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
+lvim.keys.insert_mode["<C-b>"] = "<ESC>^i"
+lvim.keys.insert_mode["<C-e>"] = "<End>"
 
--- -- Use which-key to add extra bindings with the leader-key prefix
--- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
--- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
-
-lvim.builtin.which_key.mappings["J"] = { "mzJ`z", "Delete endline Enter" }
-lvim.builtin.which_key.mappings["u"] = { "mxu`x", "Undo action" }
-lvim.builtin.which_key.mappings["<leader>rw"] =
-	{ [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace current word" }
+lvim.keys.insert_mode["<C-h>"] = "<Left>"
+lvim.keys.insert_mode["<C-l>"] = "<Right>"
+lvim.keys.insert_mode["<C-j>"] = "<Down>"
+lvim.keys.insert_mode["<C-k>"] = "<Up>"
+lvim.keys.insert_mode["<C-s>"] = "<esc>:w<cr>a"
 
 lvim.keys.normal_mode["<C-u>"] = { "<C-u>zz0", { silent = true } }
 lvim.keys.normal_mode["<C-d>"] = { "<C-d>zz0", { silent = true } }
 lvim.keys.normal_mode["n"] = { "nzzzv", { silent = true } }
 lvim.keys.normal_mode["N"] = { "Nzzzv", { silent = true } }
 lvim.keys.normal_mode["<Esc>"] = { ":noh<CR>", { silent = true } }
+
+lvim.keys.normal_mode["J"] = { "mzJ`z", { silent = true } }
+
+lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<CR>"
+lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
+
+-- -- Use which-key to add extra bindings with the leader-key prefix
+-- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
+-- lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
+
+lvim.builtin.which_key.mappings["r"] =
+	{ [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], "Replace current word" }
 
 lvim.builtin.which_key.mappings["h"] = {
 	name = "Harpoon",
@@ -192,18 +201,6 @@ lvim.plugins = {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		no_italic = true,
-		integrations = {
-			-- sandwich = false,
-			-- noice = true,
-			-- mini = true,
-			-- leap = true,
-			-- markdown = true,
-			-- neotest = true,
-			-- cmp = true,
-			-- overseer = true,
-			-- lsp_trouble = true,
-			-- ts_rainbow2 = true,
-		},
 	},
 	{
 		"echasnovski/mini.surround",
