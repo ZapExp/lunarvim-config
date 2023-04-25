@@ -55,8 +55,8 @@ lvim.keys.insert_mode["<C-e>"] = "<End>"
 
 lvim.keys.insert_mode["<C-h>"] = "<Left>"
 lvim.keys.insert_mode["<C-l>"] = "<Right>"
-lvim.keys.insert_mode["<C-j>"] = "<Down>"
-lvim.keys.insert_mode["<C-k>"] = "<Up>"
+-- lvim.keys.insert_mode["<C-j>"] = "<Down>"
+-- lvim.keys.insert_mode["<C-k>"] = "<Up>"
 lvim.keys.insert_mode["<C-s>"] = "<esc>:w<cr>a"
 
 lvim.keys.normal_mode["<C-u>"] = { "<C-u>zz0", { silent = true } }
@@ -200,7 +200,6 @@ lvim.plugins = {
 	{
 		"catppuccin/nvim",
 		name = "catppuccin",
-		no_italic = true,
 	},
 	{
 		"echasnovski/mini.surround",
@@ -251,6 +250,46 @@ lvim.plugins = {
 			},
 		},
 	},
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	event = "InsertEnter",
+	-- 	dependencies = { "zbirenbaum/copilot.lua" },
+	-- 	config = function()
+	-- 		vim.defer_fn(function()
+	-- 			require("copilot").setup({
+	-- 				panel = {
+	-- 					enabled = true,
+	-- 					auto_refresh = false,
+	-- 					keymap = {
+	-- 						jump_next = "<c-j>",
+	-- 						jump_prev = "<c-k>",
+	-- 						accept = "<c-m>",
+	-- 						refresh = "r",
+	-- 						open = "<M-CR>",
+	-- 					},
+	-- 					layout = {
+	-- 						position = "bottom", -- | top | left | right
+	-- 						ratio = 0.4,
+	-- 					},
+	-- 				},
+	-- 				suggestion = {
+	-- 					enabled = true,
+	-- 					auto_trigger = false,
+	-- 					debounce = 75,
+	-- 					keymap = {
+	-- 						accept = "<c-m>",
+	-- 						accept_word = false,
+	-- 						accept_line = false,
+	-- 						next = "<C-j>",
+	-- 						prev = "<C-k>",
+	-- 						dismiss = false,
+	-- 					},
+	-- 				},
+	-- 			})
+	-- 			require("copilot_cmp").setup()
+	-- 		end, 100)
+	-- 	end,
+	-- },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
@@ -261,3 +300,18 @@ lvim.plugins = {
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
+lvim.autocommands = {
+	{
+		{ "ColorScheme" },
+		{
+			pattern = "*",
+			callback = function()
+				-- change `Normal` to the group you want to change
+				-- and `#ffffff` to the color you want
+				-- see `:h nvim_set_hl` for more options
+				vim.api.nvim_set_hl(0, "@parameter", { fg = "#ed8796", underline = false })
+				vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = "#c6a0f6", underline = false })
+			end,
+		},
+	},
+}
