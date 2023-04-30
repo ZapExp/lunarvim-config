@@ -268,54 +268,54 @@ lvim.plugins = {
 			},
 		},
 	},
-	{
-		"NvChad/nvim-colorizer.lua",
-		opts = {
-			user_default_options = {
-				tailwind = true,
-			},
-		},
-	},
 	-- {
-	-- 	"zbirenbaum/copilot-cmp",
-	-- 	event = "InsertEnter",
-	-- 	dependencies = { "zbirenbaum/copilot.lua" },
-	-- 	config = function()
-	-- 		vim.defer_fn(function()
-	-- 			require("copilot").setup({
-	-- 				panel = {
-	-- 					enabled = true,
-	-- 					auto_refresh = false,
-	-- 					keymap = {
-	-- 						jump_next = "<c-j>",
-	-- 						jump_prev = "<c-k>",
-	-- 						accept = "<c-m>",
-	-- 						refresh = "r",
-	-- 						open = "<M-CR>",
-	-- 					},
-	-- 					layout = {
-	-- 						position = "bottom", -- | top | left | right
-	-- 						ratio = 0.4,
-	-- 					},
-	-- 				},
-	-- 				suggestion = {
-	-- 					enabled = true,
-	-- 					auto_trigger = false,
-	-- 					debounce = 75,
-	-- 					keymap = {
-	-- 						accept = "<c-m>",
-	-- 						accept_word = false,
-	-- 						accept_line = false,
-	-- 						next = "<C-j>",
-	-- 						prev = "<C-k>",
-	-- 						dismiss = false,
-	-- 					},
-	-- 				},
-	-- 			})
-	-- 			require("copilot_cmp").setup()
-	-- 		end, 100)
-	-- 	end,
+	-- 	"NvChad/nvim-colorizer.lua",
+	-- 	opts = {
+	-- 		user_default_options = {
+	-- 			tailwind = true,
+	-- 		},
+	-- 	},
 	-- },
+	{
+		"zbirenbaum/copilot-cmp",
+		event = "InsertEnter",
+		dependencies = { "zbirenbaum/copilot.lua" },
+		config = function()
+			vim.defer_fn(function()
+				require("copilot").setup({
+					panel = {
+						enabled = false,
+						-- auto_refresh = false,
+						-- keymap = {
+						-- 	jump_next = "<c-j>",
+						-- 	jump_prev = "<c-k>",
+						-- 	accept = "<c-m>",
+						-- 	refresh = "r",
+						-- 	open = "<M-CR>",
+						-- },
+						-- layout = {
+						-- 	position = "bottom", -- | top | left | right
+						-- 	ratio = 0.4,
+						-- },
+					},
+					suggestion = {
+						enabled = true,
+						auto_trigger = true,
+						debounce = 75,
+						keymap = {
+							accept = "<c-m>",
+							accept_word = false,
+							accept_line = false,
+							next = "<C-j>",
+							prev = "<C-k>",
+							dismiss = false,
+						},
+					},
+				})
+				require("copilot_cmp").setup()
+			end, 100)
+		end,
+	},
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
