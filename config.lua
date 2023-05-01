@@ -153,16 +153,16 @@ lvim.builtin.treesitter.auto_install = true
 
 -- ---configure a server manually. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---see the full default list `:lua =lvim.lsp.automatic_configuration.skipped_servers`
--- vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "pyright" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "azure-pipelines-language-server" })
 -- local opts = {} -- check the lspconfig documentation for a list of all possible options
 -- require("lvim.lsp.manager").setup("pyright", opts)
 
-local opts = {
+require("lvim.lsp.manager").setup("emmet_ls", {
 	filetypes = {
 		"css",
 		"eruby",
 		"html",
-		"javascript",
+		-- "javascript",
 		"javascriptreact",
 		"less",
 		"sass",
@@ -180,13 +180,12 @@ local opts = {
 			},
 		},
 	},
-}
-require("lvim.lsp.manager").setup("emmet_ls", opts)
+})
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. IMPORTANT: Requires `:LvimCacheReset` to take effect
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
 -- lvim.lsp.automatic_configuration.skipped_servers = vim.tbl_filter(function(server)
--- 	return server ~= "emmet_ls"
+-- 	return server ~= "emmet-ls"
 -- end, lvim.lsp.automatic_configuration.skipped_servers)
 
 -- -- you can set a custom on_attach function that will be used for all the language servers
@@ -276,46 +275,46 @@ lvim.plugins = {
 	-- 		},
 	-- 	},
 	-- },
-	{
-		"zbirenbaum/copilot-cmp",
-		event = "InsertEnter",
-		dependencies = { "zbirenbaum/copilot.lua" },
-		config = function()
-			vim.defer_fn(function()
-				require("copilot").setup({
-					panel = {
-						enabled = false,
-						-- auto_refresh = false,
-						-- keymap = {
-						-- 	jump_next = "<c-j>",
-						-- 	jump_prev = "<c-k>",
-						-- 	accept = "<c-m>",
-						-- 	refresh = "r",
-						-- 	open = "<M-CR>",
-						-- },
-						-- layout = {
-						-- 	position = "bottom", -- | top | left | right
-						-- 	ratio = 0.4,
-						-- },
-					},
-					suggestion = {
-						enabled = true,
-						auto_trigger = true,
-						debounce = 75,
-						keymap = {
-							accept = "<c-m>",
-							accept_word = false,
-							accept_line = false,
-							next = "<C-j>",
-							prev = "<C-k>",
-							dismiss = false,
-						},
-					},
-				})
-				require("copilot_cmp").setup()
-			end, 100)
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot-cmp",
+	-- 	event = "InsertEnter",
+	-- 	dependencies = { "zbirenbaum/copilot.lua" },
+	-- 	config = function()
+	-- 		vim.defer_fn(function()
+	-- 			require("copilot").setup({
+	-- 				panel = {
+	-- 					enabled = false,
+	-- 					-- auto_refresh = false,
+	-- 					-- keymap = {
+	-- 					-- 	jump_next = "<c-j>",
+	-- 					-- 	jump_prev = "<c-k>",
+	-- 					-- 	accept = "<c-m>",
+	-- 					-- 	refresh = "r",
+	-- 					-- 	open = "<M-CR>",
+	-- 					-- },
+	-- 					-- layout = {
+	-- 					-- 	position = "bottom", -- | top | left | right
+	-- 					-- 	ratio = 0.4,
+	-- 					-- },
+	-- 				},
+	-- 				suggestion = {
+	-- 					enabled = true,
+	-- 					auto_trigger = true,
+	-- 					debounce = 75,
+	-- 					keymap = {
+	-- 						accept = "<c-m>",
+	-- 						accept_word = false,
+	-- 						accept_line = false,
+	-- 						next = "<C-j>",
+	-- 						prev = "<C-k>",
+	-- 						dismiss = false,
+	-- 					},
+	-- 				},
+	-- 			})
+	-- 			-- require("copilot_cmp").setup()
+	-- 		end, 100)
+	-- 	end,
+	-- },
 }
 
 -- -- Autocommands (`:help autocmd`) <https://neovim.io/doc/user/autocmd.html>
@@ -326,18 +325,18 @@ lvim.plugins = {
 --     require("nvim-treesitter.highlight").attach(0, "bash")
 --   end,
 -- })
-lvim.autocommands = {
-	{
-		{ "ColorScheme" },
-		{
-			pattern = "*",
-			callback = function()
-				-- change `Normal` to the group you want to change
-				-- and `#ffffff` to the color you want
-				-- see `:h nvim_set_hl` for more options
-				vim.api.nvim_set_hl(0, "@parameter", { fg = "#ed8796", underline = false })
-				vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = "#c6a0f6", underline = false })
-			end,
-		},
-	},
-}
+-- lvim.autocommands = {
+-- 	{
+-- 		{ "ColorScheme" },
+-- 		{
+-- 			pattern = "*",
+-- 			callback = function()
+-- 				-- change `Normal` to the group you want to change
+-- 				-- and `#ffffff` to the color you want
+-- 				-- see `:h nvim_set_hl` for more options
+-- 				vim.api.nvim_set_hl(0, "@parameter", { fg = "#ed8796", underline = false })
+-- 				vim.api.nvim_set_hl(0, "@tag.attribute.tsx", { fg = "#c6a0f6", underline = false })
+-- 			end,
+-- 		},
+-- 	},
+-- }
