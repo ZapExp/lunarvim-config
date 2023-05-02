@@ -242,6 +242,12 @@ lvim.plugins = {
 		},
 	},
 	{
+		"mbbill/undotree",
+		keys = {
+			{ "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "UndoTree" },
+		},
+	},
+	{
 		"windwp/nvim-ts-autotag",
 		event = { "BufReadPost", "BufNewFile" },
 		config = function()
