@@ -61,6 +61,8 @@ lvim.keys.insert_mode["<C-s>"] = "<esc>:w<cr>a"
 
 lvim.keys.normal_mode["<C-u>"] = { "<C-u>zz0", { silent = true } }
 lvim.keys.normal_mode["<C-d>"] = { "<C-d>zz0", { silent = true } }
+lvim.keys.normal_mode["{"] = { "{zz0", { silent = true } }
+lvim.keys.normal_mode["}"] = { "}zz0", { silent = true } }
 lvim.keys.normal_mode["n"] = { "nzzzv", { silent = true } }
 lvim.keys.normal_mode["N"] = { "Nzzzv", { silent = true } }
 lvim.keys.normal_mode["<Esc>"] = { ":noh<CR>", { silent = true } }
@@ -69,6 +71,9 @@ lvim.keys.normal_mode["J"] = { "mzJ`z", { silent = true } }
 
 lvim.keys.normal_mode["<Tab>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<S-Tab>"] = ":BufferLineCyclePrev<CR>"
+
+lvim.keys.normal_mode["ñ"] = ":HopWord<CR>"
+lvim.keys.normal_mode["Ñ"] = ":HopLine<CR>"
 
 -- -- Use which-key to add extra bindings with the leader-key prefix
 -- lvim.builtin.which_key.mappings["W"] = { "<cmd>noautocmd w<cr>", "Save without formatting" }
@@ -240,6 +245,14 @@ lvim.plugins = {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+	},
+	{
+		"phaazon/hop.nvim",
+		branch = "v2", -- optional but strongly recommended
+		config = function()
+			-- you can configure Hop the way you like here; see :h hop-config
+			require("hop").setup({ keys = "etovxqpdygfblzhckisuran" })
+		end,
 	},
 	{
 		"mbbill/undotree",
